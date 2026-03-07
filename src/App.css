@@ -1,0 +1,46 @@
+/* hide scrollbar but keep scrolling */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE & Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+input[type="file"] {
+    display: inline-block;
+    padding: 4px 8px;
+    width: 170px;
+    background: #000000;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
