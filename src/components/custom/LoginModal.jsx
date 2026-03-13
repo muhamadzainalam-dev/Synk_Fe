@@ -19,7 +19,7 @@ const LoginModal = ({ setLoginOpen }) => {
         <p className="text-gray-400 text-sm mb-5">
           Find your kind and join conversations that matter to you.
         </p>
-        <a href="/auth">
+        <a href="/#/auth">
           <motion.button
             className="w-full flex items-center justify-center gap-2 bg-[#242424] hover:bg-[#2e2e2e] text-white py-3 px-4 rounded-xl transition-colors"
             whileHover={{ scale: 1.02 }}

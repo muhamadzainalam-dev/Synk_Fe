@@ -28,7 +28,7 @@ export default function Header({ loginOpen }) {
 
         {!isAuthorized ? (
           <motion.a
-            href="/auth"
+            href="/#/auth"
             className="bg-white text-black text-sm font-semibold px-4 py-1.5 rounded-xl"
             whileTap={{ scale: 0.95 }}
           >

@@ -282,7 +282,7 @@ export default function OTPPage() {
         >
           <button className="text-gray-400 text-sm hover:underline hover:text-white transition-colors">
             {canResend ? (
-              <a href="/auth">
+              <a href="/#/auth">
                 <div className="flex items-center justify-center gap-1">
                   <LuArrowLeft />
                   Back to log in
