@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 
 const SERVER_URI = import.meta.env.VITE_SERVER_URI;
@@ -81,6 +82,34 @@ export default function Auth() {
     setIsSignup((prev) => !prev);
     reset();
   };
+
+  const sendUserInfo = async (tokenResponse) => {
+    try {
+      const res = await fetch(`${SERVER_URI}/googlelogin`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", // ⭐ IMPORTANT
+        body: JSON.stringify(tokenResponse),
+      });
+
+      const data = await res
+        .json()
+        .catch(() => ({ message: "Invalid response" }));
+
+      if (!res.ok) return alert(data.message || "Verification failed");
+
+      console.log(data);
+
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: sendUserInfo,
+    onError: () => console.log("Google login failed"),
+  });
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#101010] background">
@@ -209,6 +238,7 @@ export default function Auth() {
         {/* Google */}
         <motion.button
           type="button"
+          onClick={handleGoogleLogin}
           className="w-full flex items-center justify-center gap-3 border border-gray-700 text-white py-6 rounded-2xl hover:bg-[#1a1a1a]"
           variants={fadeUp}
           custom={5}

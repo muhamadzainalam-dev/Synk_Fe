@@ -84,17 +84,19 @@ const PostCard = ({ post, index, size = "md" }) => {
       }}
     >
       {/* Header */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-start gap-3">
-          <img
-            src={postUser ? pfMedia : "/userPlaceholderImage.png"}
-            className={`${sizeClass} rounded-full flex items-center justify-center object-cover`}
-          />
-          <div className="flex items-center justify-between gap-1.5 flex-wrap font-semibold text-white text-sm sm:text-base">
-            {post.user_Name}
+      <a href={`/#/user/${post.user_Name}`}>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-start gap-3">
+            <img
+              src={postUser ? pfMedia : "/userPlaceholderImage.png"}
+              className={`${sizeClass} rounded-full flex items-center justify-center object-cover`}
+            />
+            <div className="flex items-center justify-between gap-1.5 flex-wrap font-semibold text-white text-sm sm:text-base">
+              {post.user_Name}
+            </div>
           </div>
         </div>
-      </div>
+      </a>
 
       {/* Content */}
       <div className="-mt-3 ml-[52px]">

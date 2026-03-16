@@ -7,7 +7,6 @@ import OtpVerify from "./pages/OTP/page";
 
 import IsLogedin from "./components/custom/isLogedin";
 import Feed from "./components/feed/feed";
-import Stories from "./pages/Stories/page";
 import UserProfile from "./components/profile/profile";
 import Search from "./components/search/search";
 import Activity from "./components/activity/activity";

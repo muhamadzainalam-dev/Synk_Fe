@@ -6,10 +6,13 @@ import axios from "axios";
 import { MdModeEdit } from "react-icons/md";
 import { getMedia } from "../../services/getMedia";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
 
 const SERVER_URI = import.meta.env.VITE_SERVER_URI;
 
 export default function UserProfile() {
+  const navigate = useNavigate();
   const logedUser = useSelector((state) => state.user.value);
   const [isediting, setIsediting] = useState(false);
   const [allowEditing, setAllowEditing] = useState(false);
@@ -114,6 +117,26 @@ export default function UserProfile() {
     }
   }, [user]);
 
+  const handleLogout = async () => {
+    const confirmLogout = window.confirm("Are you sure you want to logout?");
+    if (!confirmLogout) return;
+
+    try {
+      const res = await fetch(`${SERVER_URI}/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) return alert(data.message);
+
+      navigate("/auth");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       {/* Center Feed */}
@@ -157,6 +180,18 @@ export default function UserProfile() {
               )}
             </div>
           </div>
+
+          {allowEditing && (
+            <div className="pb-6 px-4 md:px-8">
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center justify-center gap-2 py-3 font-medium text-red-400 border border-red-500/30 rounded-2xl hover:bg-red-500/10 hover:border-red-500 hover:text-red-300 transition-all duration-200"
+              >
+                <FiLogOut className="text-lg" />
+                Logout
+              </button>
+            </div>
+          )}
 
           <div className="border-t border-gray-700">
             {/* Center Feed */}
